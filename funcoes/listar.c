@@ -103,8 +103,7 @@ void listarDadosTabela(Tabela *tabela)
 	fclose(arquivo);
 }
 
-int escolhas(int op)
-{
+int escolhas(int op) {
 	Tabela tabela;
 	switch (op)
 	{
