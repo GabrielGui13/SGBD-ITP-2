@@ -3,72 +3,72 @@
 void apagarTabela()
 {
 
-	char nomeTabela[NOME_LIMITE];
-	printf("INFORME O NOME DA TABELA QUE DESEJA APAGAR: ");
-	fflush(stdin);
-	fgets(nomeTabela, NOME_LIMITE, stdin);
-	nomeTabela[strcspn(nomeTabela, "\n")] = '\0';
-	if (existeTabela(nomeTabela) != 0)
-	{
-		printf("A TABELA %s NAO EXISTE\n", nomeTabela);
-		return;
-	}~
+	// char nomeTabela[NOME_LIMITE];
+	// printf("INFORME O NOME DA TABELA QUE DESEJA APAGAR: ");
+	// fflush(stdin);
+	// fgets(nomeTabela, NOME_LIMITE, stdin);
+	// nomeTabela[strcspn(nomeTabela, "\n")] = '\0';
+	// if (existeTabela(nomeTabela) != 1)
+	// {
+	// 	printf("A TABELA %s NAO EXISTE\n", nomeTabela);
+	// 	return;
+	// }
 
-	FILE *tabelas;
-	FILE *tempFile;
-	char tabelastxt[] = "tabelas/tabelas.txt";
-	char nomeTabelaTxt[NOME_LIMITE + 66];
-	sprintf(nomeTabelaTxt, "tabelas/%s.txt", nomeTabela);
-	char linha[NOME_LIMITE];
+	// FILE *tabelas;
+	// FILE *tempFile;
+	// char tabelastxt[] = "tabelas/tabelas.txt";
+	// char nomeTabelaTxt[NOME_LIMITE + 66];
+	// sprintf(nomeTabelaTxt, "tabelas/%s.txt", nomeTabela);
+	// char linha[NOME_LIMITE];
 
-	tabelas = fopen(tabelastxt, "r");
-	if (tabelas == NULL)
-	{
-		printf("ERRO AO ABRIR O ARQUIVO %s\n", tabelastxt);
-		return;
-	}
-	tempFile = fopen("tabelas/temp.txt", "w");
-	if (tempFile == NULL)
-	{
-		printf("ERRO AO CRIAR O ARQUIVO TEMPORÁRIO\n");
-		fclose(tabelas);
-		return;
-	}
+	// tabelas = fopen(tabelastxt, "r");
+	// if (tabelas == NULL)
+	// {
+	// 	printf("ERRO AO ABRIR O ARQUIVO %s\n", tabelastxt);
+	// 	return;
+	// }
+	// tempFile = fopen("tabelas/temp.txt", "w");
+	// if (tempFile == NULL)
+	// {
+	// 	printf("ERRO AO CRIAR O ARQUIVO TEMPORÁRIO\n");
+	// 	fclose(tabelas);
+	// 	return;
+	// }
 
-	// Procura e remove a tabela do arquivo original
-	while (fgets(linha, sizeof(linha), tabelas) != NULL)
-	{
-		linha[strcspn(linha, "\n")] = '\0';
-		if (strcmp(nomeTabela, linha) != 0)
-		{
-			fprintf(tempFile, "%s\n", linha);
-		}
-	}
-	fclose(tabelas);
-	fclose(tempFile);
+	// // Procura e remove a tabela do arquivo original
+	// while (fgets(linha, sizeof(linha), tabelas) != NULL)
+	// {
+	// 	linha[strcspn(linha, "\n")] = '\0';
+	// 	if (strcmp(nomeTabela, linha) != 0)
+	// 	{
+	// 		fprintf(tempFile, "%s\n", linha);
+	// 	}
+	// }
+	// fclose(tabelas);
+	// fclose(tempFile);
 
-	if (remove(nomeTabelaTxt) == 0)
-	{
-	}
-	else
-	{
-		perror("Erro removendo a tabelas");
-	}
-	if (remove(tabelastxt) == 0)
-	{
-	}
-	else
-	{
-		perror("Erro removendo a tabela original");
-	}
-	if (rename("tabelas/temp.txt", "tabelas/tabelas.txt") == 0)
-	{
-	}
-	else
-	{
-		perror("Erro renomeando");
-	}
-	printf("TABELA '%s' REMOVIDA COM SUCESSO\n", nomeTabela);
+	// if (remove(nomeTabelaTxt) == 0)
+	// {
+	// }
+	// else
+	// {
+	// 	perror("Erro removendo a tabelas");
+	// }
+	// if (remove(tabelastxt) == 0)
+	// {
+	// }
+	// else
+	// {
+	// 	perror("Erro removendo a tabela original");
+	// }
+	// if (rename("tabelas/temp.txt", "tabelas/tabelas.txt") == 0)
+	// {
+	// }
+	// else
+	// {
+	// 	perror("Erro renomeando");
+	// }
+	// printf("TABELA '%s' REMOVIDA COM SUCESSO\n", nomeTabela);
 }
 
 void procurarValor(Tabela *tabela)
