@@ -1,6 +1,7 @@
 #ifndef LISTAR_H
 #define LISTAR_H
 #include "auxiliares.h"
+#include <dirent.h>
 
 void listarTabelas();
 

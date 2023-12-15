@@ -1,0 +1,5 @@
+nome: pessoas
+numeroColunas: 1
+colunaChavePrimaria: id
+nomeColuna: nome
+tipoColuna: 5

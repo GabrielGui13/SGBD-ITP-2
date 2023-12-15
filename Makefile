@@ -23,6 +23,4 @@ $(EXECUTABLE): $(OBJS)
 
 # Comando para limpar os objetos e o executável
 clean:
-	del funcoes\*.o
-	del home.o
-	del home.exe
+	rm -f $(OBJS)

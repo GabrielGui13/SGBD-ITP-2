@@ -62,7 +62,7 @@ void criarTabela(Tabela *tabela)
 			int posTipo = 0;
 			while (posTipo == 0)
 			{
-				printf("| 1 - char | 2 - int | 3 - float | 4 - double | 5 - string |\nINFORME O TIPO DA COLUNA: ");
+				printf("1 - char\n2 - int\n3 - float\n4 - double\n5 - string\nInforme o tipo da coluna: ");
 				scanf("%d", &posTipo);
 				getchar();
 				switch (posTipo)
@@ -130,8 +130,7 @@ void criarTabela(Tabela *tabela)
 			return;
 		}
 	}
-	else
-	{
+	else {
 		fclose(tabelaPrincipal);
 		// Se o arquivo existir, abre para adicionar conteúdo no final
 		tabelaPrincipal = fopen(nome, "a");

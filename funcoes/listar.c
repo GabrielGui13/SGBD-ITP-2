@@ -1,38 +1,27 @@
+#include <dirent.h>
+#include <string.h>
 #include "listar.h"
 #include "auxiliares.h"
 #include "criar.h"
 #include "busca.h"
 
-void listarTabelas()
-{
-	FILE *tabelaPrincipal;
-	char nome[] = "tabelas/tabelas.txt";
-	char nomeTabela[NOME_LIMITE];
+void listarTabelas() {
+	const char* caminho = "./tabelas";
+	struct dirent* entrada;
+	DIR* pasta;
 
-	tabelaPrincipal = fopen(nome, "r");
-	if (tabelaPrincipal == NULL)
-	{
-		printf("NAO FORAM ENCONTRADAS TABELAS \n");
+	pasta = opendir(caminho);
+	if (pasta == NULL) {
+		perror("Não foi possível abrir a pasta!");
 		return;
 	}
 
-	int count = 0;
-	while (fgets(nomeTabela, sizeof(nomeTabela), tabelaPrincipal) != NULL)
-	{
-		if (count == 0)
-		{
-			printf("=== LISTA DE TABELAS ===\n");
-		}
-		nomeTabela[strcspn(nomeTabela, "\n")] = '\0';
-		printf("%s\n", nomeTabela);
-		count++;
+	printf("Lista de tabelas:\n");
+	while ((entrada = readdir(pasta)) != NULL) {
+			if (strstr(entrada->d_name, ".txt")) {
+				printf("%s\n", entrada->d_name);
+			}
 	}
-	if (count == 0)
-	{
-		printf("NAO FORAM ENCONTRADAS TABELAS \n");
-	}
-
-	fclose(tabelaPrincipal);
 }
 
 void listarDadosTabela(Tabela *tabela)

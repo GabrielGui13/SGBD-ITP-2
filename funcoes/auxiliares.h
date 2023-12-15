@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <dirent.h>
 #define NOME_LIMITE 50 // Definindo o limite máximo dos nomes para 50
 
 typedef struct {

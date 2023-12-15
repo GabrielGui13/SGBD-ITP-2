@@ -8,11 +8,11 @@ void apagarTabela()
 	fflush(stdin);
 	fgets(nomeTabela, NOME_LIMITE, stdin);
 	nomeTabela[strcspn(nomeTabela, "\n")] = '\0';
-	if (existeTabela(nomeTabela) != 1)
+	if (existeTabela(nomeTabela) != 0)
 	{
 		printf("A TABELA %s NAO EXISTE\n", nomeTabela);
 		return;
-	}
+	}~
 
 	FILE *tabelas;
 	FILE *tempFile;

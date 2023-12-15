@@ -80,30 +80,22 @@ int existeChavePrimaria(Tabela *tabela, int num)
 
 int existeTabela(char nome[])
 {
-	FILE *tabelaPrincipal;
-	char tabelas[] = "tabelas/tabelas.txt";
-	char linha[NOME_LIMITE];
+	const char* caminho = "./tabelas";
+	struct dirent* entrada;
+	DIR* pasta;
+	int existe = 0;
 
-	// Se não existir o arquivo tabelas.txt
-	tabelaPrincipal = fopen(tabelas, "r");
-	if (tabelaPrincipal == NULL)
-	{
-		return 0;
+	pasta = opendir(caminho);
+	if (pasta == NULL) {
+		perror("Não foi possível abrir a pasta!");
+		return;
 	}
 
-	// Procura o nome da tabela no arquivo de tabelas
-	while (fgets(linha, sizeof(linha), tabelaPrincipal) != NULL)
-	{
-		linha[strcspn(linha, "\n")] = '\0';
-		if (strcmp(nome, linha) == 0)
-		{
-			fclose(tabelaPrincipal);
-			return 1;
-		}
+	while ((entrada = readdir(pasta)) != NULL) {
+			if (strstr(entrada->d_name, nome + '.txt')) existe = 1;
 	}
 
-	fclose(tabelaPrincipal);
-	return 0;
+	return existe;
 }
 
 int existeValorNaString(char valor[], char string[])
